@@ -1,1 +1,13 @@
-<p>signin works!</p>
+<div style="width: 500px; height: 500px;">
+    <form [formGroup]="signinForm">
+    <label for="registeredOn">Registered On</label>
+    <label for="email">E-mail</label>
+    <input name="email"
+            formControlName="email"
+            type="email" />
+    <label for="password">Password</label>
+    <input name="password"
+            formControlName="password"
+            type="password" />
+    </form>
+</div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionsService } from '../services/sessions.service';
 import { StorageService } from '../services/storage.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tweet',
@@ -16,7 +17,8 @@ export class TweetComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private sessions: SessionsService,
     private storage: StorageService,
-    private toaster: ToastrService) {
+    private toaster: ToastrService,
+    private router: Router) {
 
   this.tweetForm = this.initializeForm()
   }
@@ -32,9 +34,10 @@ export class TweetComponent implements OnInit {
   }
 
   createTweet() {
-    this.sessions.signIn(this.tweetForm.value).subscribe(
+    this.sessions.createTweet(this.tweetForm.value).subscribe(
       (response) => {
         this.toaster.success("Tweet Generated Successfully");
+        this.router.navigate(['/dashboard'])
       },
       (error) => {
         this.toaster.error(error.error.error)

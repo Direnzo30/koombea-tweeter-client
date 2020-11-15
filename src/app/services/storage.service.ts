@@ -13,10 +13,10 @@ export class StorageService {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
-  getUser() : (User | null) {
+  getUser() {
     let user = localStorage.getItem('currentUser');
     if (!!user) {
-      return JSON.parse(user) as User;
+      return JSON.parse(user);
     }
     return null
   }

@@ -5,10 +5,13 @@
                 USER OPTIONS
             </mat-card-title>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="generateTweet()">Generate Tweet</button>
+                <button mat-raised-button color="primary" (click)="generateTweet()">GENERATE TWEET</button>
             </div>
             <div class="dash-opt">
-
+                <button mat-raised-button color="primary" (click)="generateTweet()">MY TOTAL FOLLOWERS: {{ followingCount }}</button>
+            </div>
+            <div class="dash-opt">
+                <button mat-raised-button color="primary" (click)="generateTweet()">MY TOTAL FOLLOWED: {{ followedCount }}</button>
             </div>
         </mat-card-content>
         <mat-card-actions>

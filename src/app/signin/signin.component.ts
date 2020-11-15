@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   public signinForm: FormGroup;
+  followedCount = 0
+  followingCount = 0
 
   constructor(private formBuilder: FormBuilder,
               private sessions: SessionsService,

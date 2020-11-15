@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    this.sessions.signUp(this.signupForm.value()).subscribe(
+    this.sessions.signUp(this.signupForm.value).subscribe(
       (response) => {
 
       },

@@ -40,9 +40,23 @@ export class SessionsService {
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }
 
-  public getUserStats(user_id: any): Observable<Response> {
+  public getUserStats(userId: any): Observable<Response> {
     let headers = this.generateAuthHeaders()
-    return this.http.get<Response>(`${this.apiUrl}/users/${user_id}/network_stats`, {
+    return this.http.get<Response>(`${this.apiUrl}/users/${userId}/network_stats`, {
+      headers: headers
+    }).pipe(map(res => humps.camelizeKeys(res) as Response))
+  }
+
+  public getFollowedByUser(userId: any) {
+    let headers = this.generateAuthHeaders()
+    return this.http.get<Response>(`${this.apiUrl}/users/${userId}/followed`, {
+      headers: headers
+    }).pipe(map(res => humps.camelizeKeys(res) as Response))
+  }
+
+  public getFollowingUser(userId: any) {
+    let headers = this.generateAuthHeaders()
+    return this.http.get<Response>(`${this.apiUrl}/users/${userId}/followers`, {
       headers: headers
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }

@@ -7,6 +7,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import {MatTableModule} from '@angular/material/table'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +17,8 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TweetComponent } from './tweet/tweet.component';
+import { FollowersComponent } from './followers/followers.component';
+import { FollowedComponent } from './followed/followed.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { TweetComponent } from './tweet/tweet.component';
     SigninComponent,
     SignupComponent,
     DashboardComponent,
-    TweetComponent
+    TweetComponent,
+    FollowersComponent,
+    FollowedComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,8 @@ import { TweetComponent } from './tweet/tweet.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

@@ -1,0 +1,16 @@
+<form id="tweet-creator" [formGroup]="tweetForm" (ngSubmit)="createTweet()">
+    <mat-card>
+        <mat-card-content>
+            <mat-card-title>
+                WRITE YOUR TWEET
+            </mat-card-title>
+            <mat-form-field appearance="outline">
+                <mat-label>Content</mat-label>
+                <textarea matInput autocomplete="off" formControlName="content"></textarea>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button [disabled]="!tweetForm.valid" type="submit" mat-raised-button color="primary">TWEET</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionsService } from '../services/sessions.service';
+import { StorageService } from '../services/storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +14,9 @@ export class SigninComponent implements OnInit {
   public signinForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private sessions: SessionsService) {
+              private sessions: SessionsService,
+              private storage: StorageService,
+              private toaster: ToastrService) {
     this.signinForm = this.initializeForm()
   }
 
@@ -29,10 +33,12 @@ export class SigninComponent implements OnInit {
   signin() {
     this.sessions.signIn(this.signinForm.value).subscribe(
       (response) => {
+        this.storage.storeUser(response.result);
+        this.toaster.success("Welcome");
 
       },
       (error) => {
-
+        this.toaster.error("Invalid Credentials")
       }
     )
   }

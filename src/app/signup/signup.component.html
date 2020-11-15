@@ -13,6 +13,7 @@
                         <mat-label>Password</mat-label>
                         <input type="password" autocomplete="off" matInput formControlName="password">
                     </mat-form-field>
+                    <div class="routing-link">Already have an account? <a [routerLink]="['/signin']">click here...</a></div>
             </mat-card-content>
             <mat-card-actions>
                 <button [disabled]="!signupForm.valid" type="submit" mat-raised-button color="primary">SIGN UP</button>

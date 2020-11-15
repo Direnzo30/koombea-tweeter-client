@@ -6,7 +6,6 @@ import { environment } from '../../environments/environment';
 import { StorageService } from '../services/storage.service';
 import { Response } from '../models/response';
 import * as humps from 'humps';
-import { join } from 'path';
 
 
 @Injectable({

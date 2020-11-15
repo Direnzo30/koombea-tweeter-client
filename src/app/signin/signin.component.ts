@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionsService } from '../services/sessions.service';
 import { StorageService } from '../services/storage.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -16,7 +17,8 @@ export class SigninComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private sessions: SessionsService,
               private storage: StorageService,
-              private toaster: ToastrService) {
+              private toaster: ToastrService,
+              private router: Router) {
     this.signinForm = this.initializeForm()
   }
 
@@ -35,6 +37,7 @@ export class SigninComponent implements OnInit {
       (response) => {
         this.storage.storeUser(response.result);
         this.toaster.success("Welcome");
+        this.router.navigate(['dashboard'])
 
       },
       (error) => {

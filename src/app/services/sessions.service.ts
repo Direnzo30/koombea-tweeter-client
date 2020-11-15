@@ -23,6 +23,6 @@ export class SessionsService {
   }
 
   public signOut() : Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/signin`)
+    return this.http.delete<any>(`${this.apiUrl}/signout`)
   }
 }

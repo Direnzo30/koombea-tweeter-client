@@ -45,6 +45,14 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  goToFollowers() {
+    this.router.navigate([`${this.profile.id}/followers`])
+  }
+
+  goToFollowed() {
+    this.router.navigate([`${this.profile.id}/followed`])
+  }
+
   generateTweet() {
     this.router.navigate(['/tweet'])
   }

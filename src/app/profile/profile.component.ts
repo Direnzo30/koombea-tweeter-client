@@ -64,11 +64,11 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  gotToFollowers() {
+  goToFollowers() {
     this.router.navigate([`${this.userProfile.id}/followers`])
   }
 
-  gotToFollowed() {
+  goToFollowed() {
     this.router.navigate([`${this.userProfile.id}/followed`])
   }
 

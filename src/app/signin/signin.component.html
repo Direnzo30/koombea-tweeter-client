@@ -16,7 +16,10 @@
                     <div class="routing-link">Don't have an account? <a [routerLink]="['/signup']">click here...</a></div>
             </mat-card-content>
             <mat-card-actions>
-                <button [disabled]="!signinForm.valid" type="submit" mat-raised-button color="primary">SIGN IN</button>
+                <button [disabled]="!signinForm.valid || loading" type="submit" mat-raised-button color="primary">
+                    SIGN IN
+                    <mat-icon *ngIf="loading" class="fa-spin">sync</mat-icon>
+                </button>
             </mat-card-actions>
         </mat-card>
     </form>

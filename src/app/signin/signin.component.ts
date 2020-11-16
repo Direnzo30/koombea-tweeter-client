@@ -13,8 +13,7 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   public signinForm: FormGroup;
-  followedCount = 0
-  followingCount = 0
+  public loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private sessions: SessionsService,
@@ -35,14 +34,17 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
+    this.loading = true;
     this.sessions.signIn(this.signinForm.value).subscribe(
       (response) => {
         this.storage.storeUser(response.result);
         this.toaster.success("Welcome");
+        this.loading = false;
         this.router.navigate(['dashboard'])
 
       },
       (error) => {
+        this.loading = false;
         this.toaster.error("Invalid Credentials")
       }
     )

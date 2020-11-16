@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
   loading = true;
   loadingTweets = true;
   userId: any;
-  metadata: any;
+  metadata: any = {
+    totalRecords: 0
+  };
   pageParams = {
     page: 1,
     perPage: 10,

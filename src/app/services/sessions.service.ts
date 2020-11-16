@@ -68,6 +68,13 @@ export class SessionsService {
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }
 
+  public getAllFeed(pageParams: any) {
+    let headers = this.generateAuthHeaders()
+    return this.http.get<Response>(`${this.apiUrl}/tweets?page=${pageParams.page}&per_page=${pageParams.perPage}`, {
+      headers: headers
+    }).pipe(map(res => humps.camelizeKeys(res) as Response))
+  }
+
   public followUser(userId: any) {
     let headers = this.generateAuthHeaders()
     return this.http.post<Response>(`${this.apiUrl}/follows`, { followed_id: userId }, {

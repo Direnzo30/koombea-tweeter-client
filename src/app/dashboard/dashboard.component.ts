@@ -14,6 +14,17 @@ export class DashboardComponent implements OnInit {
 
   user: User | null;
   profile: any;
+  loading = true;
+  loadingTweets = true;
+  metadata: any = {
+    totalRecords: 0
+  };
+  pageParams = {
+    page: 1,
+    perPage: 10,
+    userId: null
+  }
+  tweets: any = [];
   
   constructor(private router: Router,
               private toaster: ToastrService,
@@ -25,6 +36,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initProfile();
+    this.getFeed();
   }
 
   initUser() {
@@ -55,6 +67,26 @@ export class DashboardComponent implements OnInit {
 
   generateTweet() {
     this.router.navigate(['/tweet'])
+  }
+
+  getFeed() {
+    this.loadingTweets = true;
+    this.session.getAllFeed(this.pageParams).subscribe(
+      (response) => {
+        this.tweets = response.result;
+        this.metadata = response.metadata;
+        this.loadingTweets = false;
+      },
+      (error) => {
+        this.loadingTweets = false;
+        this.toaster.error("Unable to load the feed")
+      }
+    )
+  }
+
+  paginate(event: any) {
+    this.pageParams.page = event.pageIndex + 1;
+    this.getFeed();
   }
 
 }

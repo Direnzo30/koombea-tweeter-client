@@ -23,7 +23,7 @@
         <ng-container matColumnDef="followed">
           <th mat-header-cell *matHeaderCellDef> Followed by me </th>
           <td mat-cell *matCellDef="let element">
-              <button *ngIf="!element.followed" mat-raised-button color="primary" (click)="followUser(element)"> FOLLOW </button>
+              <button *ngIf="!element.followed" [disabled]="element.loading" mat-raised-button color="primary" (click)="followUser(element)"> FOLLOW </button>
               <span *ngIf="element.followed"> Already followed </span>
             </td>
         </ng-container>

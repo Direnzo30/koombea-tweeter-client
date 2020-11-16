@@ -61,6 +61,13 @@ export class SessionsService {
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }
 
+  public followUser(userId: any) {
+    let headers = this.generateAuthHeaders()
+    return this.http.post<Response>(`${this.apiUrl}/follows`, { followed_id: userId }, {
+      headers: headers
+    }).pipe(map(res => humps.camelizeKeys(res) as Response))
+  }
+
   public generateAuthHeaders() {
     let user = this.storage.getUser();
     if (!!user) {

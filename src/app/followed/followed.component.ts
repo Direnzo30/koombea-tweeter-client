@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionsService } from '../services/sessions.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-followed',
@@ -22,6 +23,7 @@ export class FollowedComponent implements OnInit {
 
   constructor(private currentRoute: ActivatedRoute,
               private router: Router,
+              private toaster: ToastrService,
               private session: SessionsService) {
 
     this.userId = this.currentRoute.snapshot.paramMap.get('id');
@@ -43,8 +45,19 @@ export class FollowedComponent implements OnInit {
     )
   }
 
-  followUser(userId: any) {
-
+  followUser(user: any) {
+    user.loading = true;
+    this.session.followUser(user.id).subscribe(
+      (response) => {
+        user.followed = true;
+        user.loading = false;
+        this.toaster.success("User followed successfully");
+      },
+      (error) => {
+        user.loading = false;
+        this.toaster.error("Unable to generate follow");
+      }
+    )
   }
 
 }

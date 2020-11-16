@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class TweetComponent implements OnInit {
 
   public tweetForm: FormGroup;
+  public loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private sessions: SessionsService,
@@ -34,12 +35,15 @@ export class TweetComponent implements OnInit {
   }
 
   createTweet() {
+    this.loading = true;
     this.sessions.createTweet(this.tweetForm.value).subscribe(
       (response) => {
+        this.loading = false;
         this.toaster.success("Tweet Generated Successfully");
         this.router.navigate(['/dashboard'])
       },
       (error) => {
+        this.loading = false;
         this.toaster.error(error.error.error)
       }
     )

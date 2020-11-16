@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initProfile();
-    this.getFeed();
   }
 
   initUser() {
@@ -49,9 +48,12 @@ export class DashboardComponent implements OnInit {
     }
     this.session.getUserProfile(this.user.id).subscribe(
       (response) => {
+        this.loading = false;
         this.profile = response.result;
+        this.getFeed();
       },
       (error) => {
+        this.loading = false;
         this.toaster.error("Unable to get user profile")
       }
     )

@@ -5,13 +5,21 @@
                 MY PROFILE
             </mat-card-title>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="generateTweet()">GENERATE TWEET</button>
+                <button mat-raised-button color="primary" [disabled]="loading" (click)="generateTweet()">GENERATE TWEET</button>
             </div>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="goToFollowers()">MY TOTAL FOLLOWERS: {{ profile?.totalFollowers || 0 }}</button>
+                <button mat-raised-button color="primary" [disabled]="loading" (click)="goToFollowers()">
+                    MY TOTAL FOLLOWERS: 
+                    <mat-icon *ngIf="loading" class="fa-spin">sync</mat-icon>
+                    <span *ngIf="!loading">{{ profile?.totalFollowers || 0 }}</span>
+                </button>
             </div>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="goToFollowed()">MY TOTAL FOLLOWED: {{ profile?.totalFollowed || 0 }}</button>
+                <button mat-raised-button color="primary" [disabled]="loading" (click)="goToFollowed()">
+                    MY TOTAL FOLLOWED: 
+                    <mat-icon *ngIf="loading" class="fa-spin">sync</mat-icon>
+                    <span *ngIf="!loading">{{ profile?.totalFollowed || 0 }}</span>
+                </button>
             </div>
         </mat-card-content>
         <mat-card-actions>

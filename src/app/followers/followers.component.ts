@@ -18,6 +18,7 @@ export class FollowersComponent implements OnInit {
     page: 1,
     perPage: 10
   }
+  username = "";
 
   displayedColumns: string[] = ['full_name', 'username', 'followed'];
 
@@ -39,9 +40,13 @@ export class FollowersComponent implements OnInit {
       (response) => {
         this.followers = response.result;
         this.metadata = response.metadata;
+        this.username = response.metadata.username;
         this.loading = false;
       },
-      (error) => {}
+      (error) => {
+        this.loading = false;
+        this.toaster.error("User not found")
+      }
     )
   }
 

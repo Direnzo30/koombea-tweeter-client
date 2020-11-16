@@ -4,7 +4,7 @@
 </div>
 
 <div *ngIf="!loading" id="followed-list">
-    <div class="no-results">USERS FOLLOWED BY </div>
+    <div class="no-results">USERS FOLLOWED BY @{{username.toUpperCase()}} </div>
     <table mat-table [dataSource]="followeds" class="mat-elevation-z8">
       
         <!-- fullname Column -->

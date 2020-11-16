@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TweetComponent } from './tweet/tweet.component';
 import { FollowedComponent } from './followed/followed.component';
+import { FollowersComponent } from './followers/followers.component';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: ':id/followed', component: FollowedComponent },
+  { path: ':id/followers', component: FollowersComponent },
   { path: 'tweet', component: TweetComponent },
 ];
 

@@ -35,4 +35,12 @@
         THERE ARE NO RESULTS
     </div>
 </div>
+<!-- paginator -->
+<div [hidden]="followers.length <= 0 || loading">
+  <mat-paginator [length]="metadata.totalRecords"
+  [pageSize]="10"
+  [pageSizeOptions]="[10]"
+  (page)="paginate($event)">
+  </mat-paginator>
+</div>
 

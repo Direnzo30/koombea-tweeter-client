@@ -16,7 +16,8 @@ export class FollowedComponent implements OnInit {
   metadata: any;
   pageParams = {
     page: 1,
-    perPage: 10
+    perPage: 10,
+    userId: null
   }
   username =  "";
 
@@ -28,6 +29,7 @@ export class FollowedComponent implements OnInit {
               private session: SessionsService) {
 
     this.userId = this.currentRoute.snapshot.paramMap.get('id');
+    this.pageParams.userId = this.userId;
   }
 
   ngOnInit(): void {
@@ -35,8 +37,12 @@ export class FollowedComponent implements OnInit {
   }
 
   initFollowed() {
+    this.getFollowers();
+  }
+
+  getFollowers() {
     this.loading = true;
-    this.session.getFollowedByUser(this.userId).subscribe(
+    this.session.getFollowedByUser(this.pageParams).subscribe(
       (response) => {
         this.followeds = response.result;
         this.metadata = response.metadata;
@@ -48,6 +54,11 @@ export class FollowedComponent implements OnInit {
         this.toaster.error("User not found")
       }
     )
+  }
+
+  paginate(event: any) {
+    this.pageParams.page = event.pageIndex + 1;
+    this.getFollowers()
   }
 
   followUser(user: any) {

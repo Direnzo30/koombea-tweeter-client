@@ -47,16 +47,16 @@ export class SessionsService {
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }
 
-  public getFollowedByUser(userId: any) {
+  public getFollowedByUser(pageParams: any) {
     let headers = this.generateAuthHeaders()
-    return this.http.get<Response>(`${this.apiUrl}/users/${userId}/followed`, {
+    return this.http.get<Response>(`${this.apiUrl}/users/${pageParams.userId}/followed?page=${pageParams.page}&per_page=${pageParams.perPage}`, {
       headers: headers
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }
 
-  public getFollowingUser(userId: any) {
+  public getFollowingUser(pageParams: any) {
     let headers = this.generateAuthHeaders()
-    return this.http.get<Response>(`${this.apiUrl}/users/${userId}/followers`, {
+    return this.http.get<Response>(`${this.apiUrl}/users/${pageParams.userId}/followers?page=${pageParams.page}&per_page=${pageParams.perPage}`, {
       headers: headers
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }

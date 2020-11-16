@@ -19,6 +19,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TweetComponent } from './tweet/tweet.component';
 import { FollowersComponent } from './followers/followers.component';
 import { FollowedComponent } from './followed/followed.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FollowedComponent } from './followed/followed.component';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatButtonModule,
     BrowserAnimationsModule,

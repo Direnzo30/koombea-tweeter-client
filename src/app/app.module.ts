@@ -20,6 +20,7 @@ import { TweetComponent } from './tweet/tweet.component';
 import { FollowersComponent } from './followers/followers.component';
 import { FollowedComponent } from './followed/followed.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     DashboardComponent,
     TweetComponent,
     FollowersComponent,
-    FollowedComponent
+    FollowedComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

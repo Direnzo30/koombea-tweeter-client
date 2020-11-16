@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { SessionsService } from '../services/sessions.service';
 import { StorageService } from '../services/storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +13,10 @@ import { StorageService } from '../services/storage.service';
 export class DashboardComponent implements OnInit {
 
   user: User | null;
-  followedCount = 0;
-  followingCount = 0;
+  profile: any;
   
   constructor(private router: Router,
+              private toaster: ToastrService,
               private session: SessionsService,
               private storage: StorageService) {
     
@@ -23,24 +24,23 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCounters();
+    this.initProfile();
   }
 
   initUser() {
     return this.storage.getUser();
   }
 
-  getCounters() {
+  initProfile() {
     if (!this.user) {
       return
     }
-    this.session.getUserStats(this.user.id).subscribe(
+    this.session.getUserProfile(this.user.id).subscribe(
       (response) => {
-        this.followedCount = response.result.followed;
-        this.followingCount = response.result.followers;
+        this.profile = response.result;
       },
       (error) => {
-
+        this.toaster.error("Unable to get user profile")
       }
     )
   }

@@ -1,0 +1,18 @@
+
+<div id="profile">
+    <mat-card>
+        <mat-card-content>
+            <mat-card-title>
+                @{{ userProfile?.username.toUpperCase() }} PROFILE
+            </mat-card-title>
+            <div class="dash-opt">
+                <button mat-raised-button color="primary" (click)="gotToFollowers()">TOTAL FOLLOWERS: {{ userProfile?.totalFollowers || 0 }}</button>
+            </div>
+            <div class="dash-opt">
+                <button mat-raised-button color="primary" (click)="gotToFollowers()">TOTAL FOLLOWED: {{ userProfile?.totalFollowed || 0 }}</button>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
+</div>

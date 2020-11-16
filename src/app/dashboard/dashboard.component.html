@@ -8,10 +8,10 @@
                 <button mat-raised-button color="primary" (click)="generateTweet()">GENERATE TWEET</button>
             </div>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="generateTweet()">MY TOTAL FOLLOWERS: {{ followingCount }}</button>
+                <button mat-raised-button color="primary" (click)="generateTweet()">MY TOTAL FOLLOWERS: {{ profile?.totalFollowers || 0 }}</button>
             </div>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="generateTweet()">MY TOTAL FOLLOWED: {{ followedCount }}</button>
+                <button mat-raised-button color="primary" (click)="generateTweet()">MY TOTAL FOLLOWED: {{ profile?.totalFollowed || 0 }}</button>
             </div>
         </mat-card-content>
         <mat-card-actions>

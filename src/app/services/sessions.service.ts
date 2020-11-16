@@ -40,9 +40,9 @@ export class SessionsService {
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }
 
-  public getUserStats(userId: any): Observable<Response> {
+  public getUserProfile(userId: any): Observable<Response> {
     let headers = this.generateAuthHeaders()
-    return this.http.get<Response>(`${this.apiUrl}/users/${userId}/network_stats`, {
+    return this.http.get<Response>(`${this.apiUrl}/users/${userId}`, {
       headers: headers
     }).pipe(map(res => humps.camelizeKeys(res) as Response))
   }

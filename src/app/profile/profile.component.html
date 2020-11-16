@@ -21,4 +21,41 @@
         <mat-card-actions>
         </mat-card-actions>
     </mat-card>
+
+    <h2>USER FEED</h2>
+
+    <mat-card>
+
+        <mat-card-content class="feed" *ngIf="!loadingTweets && tweets.length > 0">
+            <div class="tweet-container" *ngFor="let tweet of tweets">
+                <div>
+                    <span><strong> {{tweet.firstName + " " + tweet.lastName}}, </strong></span>
+                    <span>@{{tweet.username}} - </span>
+                    <span>{{tweet.createdAt}}</span>
+                </div>
+                <div>{{tweet.content}}</div>
+            </div>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="!loadingTweets && tweets.length <= 0">
+            <div>
+                NO RESULTS FOUND
+            </div>
+        </mat-card-content>
+
+        <mat-card-content class="spinner" *ngIf="loadingTweets">
+            <mat-progress-spinner color="primary" mode="indeterminate">
+            </mat-progress-spinner>
+        </mat-card-content>
+
+        <!-- paginator -->
+        <div [hidden]="tweets.length <= 0 || loadingTweets">
+            <mat-paginator [length]="metadata.totalRecords"
+            [pageSize]="10"
+            [pageSizeOptions]="[10]"
+            (page)="paginate($event)">
+            </mat-paginator>
+        </div>
+    </mat-card>
+
 </div>

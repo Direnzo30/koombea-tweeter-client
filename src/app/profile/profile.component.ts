@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProfileComponent implements OnInit {
 
   loading = true;
+  loadingTweets = true;
   userId: any;
   metadata: any;
   pageParams = {
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
     perPage: 10,
     userId: null
   }
+  tweets: any = [];
   userProfile: any;
 
   displayedColumns: string[] = ['full_name', 'username', 'followed'];
@@ -33,6 +35,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile()
+    this.getTweetsByUser();
   }
 
   getUserProfile() {
@@ -47,6 +50,26 @@ export class ProfileComponent implements OnInit {
         this.toaster.error('Unable to retrieve profile');
       }
     )
+  }
+
+  getTweetsByUser() {
+    this.loadingTweets = true;
+    this.session.getTweetsByUser(this.pageParams).subscribe(
+      (response) => {
+        this.tweets = response.result;
+        this.metadata = response.metadata;
+        this.loadingTweets = false;
+      },
+      (error) => {
+        this.loadingTweets = false;
+        this.toaster.error("Unable to load the feed")
+      }
+    )
+  }
+
+  paginate(event: any) {
+    this.pageParams.page = event.pageIndex + 1;
+    this.getTweetsByUser();
   }
 
   followUser(user: any) {

@@ -1,8 +1,13 @@
 #profile
     align-items: center
     display: flex
+    flex-direction: column
     justify-content: center
     width: 100%
+
+    .feed
+        max-height: 50vh
+        overflow: auto
 
     mat-card
         width: 40%
@@ -12,3 +17,14 @@
             margin: 10px 0
             text-align: center
             width: 100%
+    
+    .tweet-container
+        border: 1px solid gray
+        border-radius: 5px
+        margin: 5px 0
+
+    .spinner
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: center

@@ -12,6 +12,7 @@ import { Router } from '@angular/router'
 export class SignupComponent implements OnInit {
 
   public signupForm: FormGroup;
+  public loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private sessions: SessionsService,
@@ -34,12 +35,15 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
+    this.loading = true;
     this.sessions.signUp(this.signupForm.value).subscribe(
       (response) => {
         this.toaster.success("User Registered");
+        this.loading = false;
         this.router.navigate(['/signin'])
       },
       (error) => {
+        this.loading = false;
         this.toaster.error(error.error.error)
       }
     )

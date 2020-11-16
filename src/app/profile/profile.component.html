@@ -4,12 +4,18 @@
         <mat-card-content>
             <mat-card-title>
                 @{{ userProfile?.username.toUpperCase() }} PROFILE
+                <button *ngIf="!!userProfile && !userProfile.followed"
+                    mat-raised-button color="primary" 
+                    [disabled]="userProfile.loading" 
+                    (click)="followUser(userProfile)">
+                    FOLLOW
+                </button>
             </mat-card-title>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="gotToFollowers()">TOTAL FOLLOWERS: {{ userProfile?.totalFollowers || 0 }}</button>
+                <button mat-raised-button color="primary" [disabled]="!userProfile" (click)="gotToFollowers()">TOTAL FOLLOWERS: {{ userProfile?.totalFollowers || 0 }}</button>
             </div>
             <div class="dash-opt">
-                <button mat-raised-button color="primary" (click)="gotToFollowers()">TOTAL FOLLOWED: {{ userProfile?.totalFollowed || 0 }}</button>
+                <button mat-raised-button color="primary" [disabled]="!userProfile" (click)="gotToFollowed()">TOTAL FOLLOWED: {{ userProfile?.totalFollowed || 0 }}</button>
             </div>
         </mat-card-content>
         <mat-card-actions>

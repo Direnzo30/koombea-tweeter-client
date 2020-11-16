@@ -32,25 +32,44 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserProfile()
   }
 
   getUserProfile() {
+    this.loading = true;
     this.session.getUserProfile(this.pageParams.userId).subscribe(
       (response) => {
         this.userProfile = response.result;
+        this.loading = false;
       },
       (error) => {
+        this.loading = false;
+        this.toaster.error('Unable to retrieve profile');
+      }
+    )
+  }
 
+  followUser(user: any) {
+    user.loading = true;
+    this.session.followUser(user.id).subscribe(
+      (response) => {
+        user.followed = true;
+        user.loading = false;
+        this.toaster.success("User followed successfully");
+      },
+      (error) => {
+        user.loading = false;
+        this.toaster.error("Unable to generate follow");
       }
     )
   }
 
   gotToFollowers() {
-
+    this.router.navigate([`${this.userProfile.id}/followers`])
   }
 
   gotToFollowed() {
-    
+    this.router.navigate([`${this.userProfile.id}/followed`])
   }
 
 }

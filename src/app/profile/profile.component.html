@@ -9,6 +9,7 @@
                     [disabled]="userProfile.loading" 
                     (click)="followUser(userProfile)">
                     FOLLOW
+                    <mat-icon *ngIf="userProfile.loading" class="fa-spin">sync</mat-icon>
                 </button>
             </mat-card-title>
             <div class="dash-opt">

@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
       (response) => {
         user.followed = true;
         user.loading = false;
-        this.toaster.success("User followed successfully");
+        this.toaster.success(`You are now following @${user.username}`);
       },
       (error) => {
         user.loading = false;

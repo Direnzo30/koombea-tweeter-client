@@ -61,13 +61,18 @@ export class FollowedComponent implements OnInit {
     this.getFollowers()
   }
 
+  goToProfile(userId: any) {
+    this.router.navigate([`${userId}/profile`])
+  }
+
   followUser(user: any) {
     user.loading = true;
     this.session.followUser(user.id).subscribe(
       (response) => {
         user.followed = true;
         user.loading = false;
-        this.toaster.success("User followed successfully");
+        this.toaster.success(`You are now following @${user.username}`);
+        this.goToProfile(user.id);
       },
       (error) => {
         user.loading = false;
